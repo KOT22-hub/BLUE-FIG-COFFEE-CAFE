@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Blue Fig Coffee Café</title>
+    <link rel="icon" href="images/demo/gallery/coffee cup.jpg" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link href="layout/styles/layout.css" rel="stylesheet" type="text/css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .review-slider {
+        width: 60%;
+        margin: 50px auto;
+        position: relative;
+        background: #dde0e2;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        overflow: hidden;
+        margin-bottom: 25px;
+      }
+      .review-container {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+      }
+      .review {
+        min-width: 100%;
+        display: none;
+      }
+      .review.active {
+        display: block;
+      }
+      .review p {
+        font-size: 18px;
+        color: #444;
+        font-style: italic;
+        margin-bottom: 10px;
+      }
+      .review h3 {
+        font-size: 16px;
+        color: #1a4e78;
+        font-weight: bold;
+      }
+      button {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        color: #1a4e78;
+        padding: 10px;
+      }
+      button:hover {
+        color: #333;
+      }
+      .prev {
+        left: 10px;
+      }
+      .next {
+        right: 10px;
+      }
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        color: #333;
+        text-align: center;
+      }
+      .header {
+        background-image: url("images/demo/gallery/Untitled\ design.png");
+        background-size: cover;
+        background-position: center;
+        height: 430px;
+        border-radius: 35px;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        text-align: center;
+        position: relative;
+        flex-direction: column;
+        padding-bottom: 50px;
+      }
+      .nav {
+        background: rgba(178, 178, 178, 0.8);
+        padding: 10px 15px;
+        display: flex;
+        justify-content: center;
+        gap: 25px;
+        border-radius: 15px;
+        position: absolute;
+        bottom: 20px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+      }
+      .nav a {
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+        padding: 10px 15px;
+        font-weight: bold;
+        transition: 0.3s;
+      }
+      .nav a:hover {
+        color: #cfecf3;
+        border-radius: 5px;
+      }
+      .hero-text {
+        padding: 40px 20px;
+      }
+      .hero-text h1 {
+        font-size: 42px;
+        color: #000;
+        margin-bottom: 20px;
+      }
+      .hero-text img {
+        display: block;
+        margin: 20px auto;
+        width: 200px;
+        height: auto;
+        border-radius: 15px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+      }
+      .hero-text p {
+        font-size: 18px;
+        max-width: 600px;
+        margin: 0 auto 20px;
+      }
+      .btn {
+        display: inline-block;
+        padding: 15px 24px;
+        font-size: 22px;
+        color: white;
+        background-color: #9dabae;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: 0.3s;
+      }
+      .btn:hover {
+        background-color: white;
+        color: #9dabae;
+        transform: scale(1.1);
+      }
+      .gallery {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+        margin-top: 30px;
+      }
+      .gallery img {
+        width: 350px;
+        height: 250px;
+        object-fit: cover;
+        border-radius: 15px;
+        transition: transform 0.3s ease;
+      }
+      .gallery img:hover {
+        transform: scale(1.05);
+      }
+      .description {
+        background: #f8f8f8;
+        padding: 50px 20px;
+        margin-top: 40px;
+        text-align: center;
+      }
+      .description h2 {
+        font-size: 36px;
+        color: rgb(122, 120, 120);
+        margin: 15px 0px 0px;
+      }
+      .description p {
+        font-size: 20px;
+        line-height: 28px;
+        letter-spacing: 0;
+        font-family: "Open Sans", sans-serif;
+      }
+      .food-icons {
+        display: flex;
+        justify-content: space-around;
+        text-align: center;
+        padding: 20px;
+        background-color: #ecf0f1;
+        margin-top: 25px;
+      }
+      .food-item {
+        width: 200px;
+      }
+      .food-item i {
+        font-size: 50px;
+        color: #075166;
+        background-color: #f4f4f4;
+        width: 100px;
+        height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.2);
+        border-radius: 50%;
+      }
+      .food-item h3 {
+        margin: 10px 0;
+        font-size: 20px;
+        font-family: "Open Sans", sans-serif;
+      }
+      .food-item p {
+        font-size: 16px;
+        color: #555;
+        font-family: "Open Sans", sans-serif;
+      }
+      .book-table-btn {
+        width: 100%;
+        padding: 12px;
+        background-color: #075166;
+        color: white;
+        font-size: 18px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: 0.3s;
+        margin-top: 20px;
+      }
+      .book-table-btn:hover {
+        background-color: #2980b9;
+        transform: scale(1.05);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      }
+      .book-table-btn:focus {
+        outline: none;
+      }
+      .twingallery div img:hover {
+        transform: scale(1.05);
+      }
+      .floating-leaf {
+        position: absolute;
+        font-size: 80px;
+        opacity: 0.8;
+        animation: floatLeaf 5s infinite alternate ease-in-out;
+      }
+      .left-leaf {
+        left: 5%;
+        top: 100%;
+      }
+      .right-leaf {
+        right: 5%;
+        top: 100%;
+      }
+      @keyframes floatLeaf {
+        0% {
+          transform: translateY(0px) rotate(0deg);
+        }
+        50% {
+          transform: translateY(15px) rotate(10deg);
+        }
+        100% {
+          transform: translateY(0px) rotate(-10deg);
+        }
+      }
+      .hero-text h2:hover {
+        text-decoration: underline;
+        text-decoration-color: #2980b9;
+        text-decoration-thickness: 3px;
+        text-underline-offset: 5px;
+        transition: text-decoration 0.3s ease-in-out;
+      }
+      .reservation-description h3 {
+        font-size: 28px;
+        color: #075166;
+        margin-bottom: 10px;
+        font-family: "Playfair Display", serif;
+      }
+      .reservation-description .highlight {
+        font-size: 22px;
+        font-weight: bold;
+        color: #2980b9;
+        margin-bottom: 10px;
+      }
+      .reservation-description p {
+        font-size: 18px;
+        color: #555;
+        line-height: 1.6;
+        font-family: "Open Sans", sans-serif;
+      }
+      .description {
+        background: #f8f8f8;
+        padding: 50px 20px;
+        margin-top: 40px;
+        text-align: center;
+      }
+      .event-title {
+        font-size: 42px;
+        font-weight: bold;
+        color: #333;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+      }
+      .description-container {
+        display: flex;
+        width: 90%;
+        margin: 50px auto;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1);
+        height: 600px;
+        justify-content: space-evenly;
+      }
+      .left {
+        width: 60%;
+        padding-right: 20px;
+      }
+      .left p {
+        font-size: 40px;
+        line-height: 1.6;
+        color: #555;
+      }
+      .right {
+        width: 40%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        gap: 40px;
+      }
+      .image-placeholder {
+        width: 100%;
+        height: 150px;
+        background-color: #ccc;
+        border-radius: 8px;
+      }
+      .left h1 {
+        font-size: 38px;
+        color: #1a4e78;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+      .left p {
+        font-size: 18px;
+        line-height: 1.8;
+        color: #555;
+        margin-bottom: 20px;
+      }
+
+      /* Mobile Responsive Styles */
+      @media (max-width: 768px) {
+        .nav {
+          flex-direction: column;
+          gap: 10px;
+          bottom: 10px;
+          padding: 8px 10px;
+        }
+        .nav a {
+          font-size: 16px;
+          padding: 8px 10px;
+        }
+        .hero-text h1 {
+          font-size: 32px;
+        }
+        .hero-text p {
+          font-size: 16px;
+          max-width: 90%;
+        }
+        .btn {
+          font-size: 18px;
+          padding: 12px 20px;
+        }
+        .gallery img {
+          width: 90%;
+          height: auto;
+        }
+        .review-slider {
+          width: 90%;
+          padding: 20px;
+        }
+        .review p {
+          font-size: 16px;
+        }
+        .review h3 {
+          font-size: 14px;
+        }
+        .description-container {
+          flex-direction: column;
+          height: auto;
+          padding: 20px;
+        }
+        .description-container .left,
+        .description-container .right {
+          width: 100%;
+          padding-right: 0;
+          margin-bottom: 20px;
+        }
+        .description-container .right img {
+          width: 90%;
+          height: auto;
+          margin: 0 auto;
+        }
+        iframe {
+          width: 100% !important;
+          height: auto !important;
+        }
+        footer div {
+          flex-direction: column;
+          text-align: center;
+          border: none;
+          padding: 10px;
+        }
+      }
+      .quick-links {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        padding: 10px;
+      }
+      .quick-links a {
+        color: #555;
+        text-decoration: none;
+        font-size: 18px;
+        position: relative;
+        padding-left: 20px;
+      }
+      .quick-links a:before {
+        content: "→";
+        position: absolute;
+        left: 0;
+        color: rgb(152, 149, 149);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <div class="floating-leaf left-leaf">🍃</div>
+      <div class="floating-leaf right-leaf">🍃</div>
+      <div class="nav">
+        <a href="home.html">Home</a>
+        <a href="#menu">Menu</a>
+        <a href="reservation.html">Reservation</a>
+        <a href="Events.html">Events</a>
+        <a href="#contact">Contact Us</a>
+      </div>
+    </div>
+
+    <div class="hero-text">
+      <h1>Welcome to Blue Fig Coffee Café</h1>
+      <h2
+        style="
+          font-size: 41px;
+          color: #555;
+          font-family: Open Sans, sans-serif;
+          font-weight: bold;
+          color: #333;
+          text-transform: uppercase;
+          letter-spacing: 1.5px;
+        "
+      >
+        Contact us
+      </h2>
+    </div>
+    <div class="description">
+      <h2 class="event-title">
+        Get in touch with Blue Fig Coffee Café- Let's Connect
+      </h2>
+      <p>
+        Whether you're looking to inquire about hosting an
+        <strong>event</strong> or simply want to share your thoughts, we’re here
+        to help with all your needs. Let us make your experience special, every
+        step of the way.
+      </p>
+    </div>
+    <div class="wrapper row3">
+      <main class="hoc container clear">
+        <div>
+          <h1 style="font-size: 40px; font-weight: bold">
+            Blue Fig Coffee Café
+          </h1>
+          <p style="font-size: 30px">
+            Monday, Tuesday, Wednesday, Thursday, Friday :7am - 5pm
+          </p>
+          <p style="font-size: 30px">Saturday: 7am - 3pm</p>
+          <p style="font-size: 30px">Sunday: Closed</p>
+        </div>
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3590.86714121665!2d28.324196375627597!3d-25.84092287730216!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e955d8da1586e6b%3A0x5729b6cc27d38b65!2sBlue%20Fig%20Coffee%20Cafe!5e0!3m2!1sen!2sza!4v1741035043194!5m2!1sen!2sza"
+          width="1500px"
+          height="450"
+          style="border: 0"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </main>
+    </div>
+    <div class="review-slider">
+      <div class="review-container">
+        <div class="review active">
+          <p>
+            "Best service, delicious food and cakes. Definitely recommend this
+            spot!"
+          </p>
+          <h3>- Belinda Russo</h3>
+        </div>
+        <div class="review">
+          <p>
+            "Blue Fig Coffee Cafés food is out of this world!! 🤩 ⭐️ It was
+            100/10 experience for me☕️🤎"
+          </p>
+          <h3>- Mika Le Roux</h3>
+        </div>
+        <div class="review">
+          <p>
+            "Amazing service and coffee that begs for more. Very accommodating
+            for bigger groups. Would recommend any time"
+          </p>
+          <h3>- Daleen Meyer</h3>
+        </div>
+      </div>
+
+      <button class="prev" onclick="prevReview()">❮</button>
+      <button class="next" onclick="nextReview()">❯</button>
+    </div>
+    <script>
+      let index = 0;
+      const reviews = document.querySelectorAll(".review");
+
+      function showReview(n) {
+        reviews.forEach((review, i) => {
+          review.classList.toggle("active", i === n);
+        });
+      }
+
+      function nextReview() {
+        index = (index + 1) % reviews.length;
+        showReview(index);
+      }
+
+      function prevReview() {
+        index = (index - 1 + reviews.length) % reviews.length;
+        showReview(index);
+      }
+
+      // Auto-slide every 5 seconds
+      setInterval(nextReview, 5000);
+    </script>
+
+    <footer style="padding: 30px 0">
+      <div
+        style="
+          max-width: 1200px;
+          margin: auto;
+          padding: 0 15px;
+          display: flex;
+          flex-wrap: wrap;
+        "
+      >
+        <div
+          style="
+            flex: 1;
+            min-width: 300px;
+            padding: 15px;
+            border-right: 1px solid #8b4513;
+          "
+        >
+          <h3 style="color: #333; font-size: 35px">Blue Fig Coffee Café</h3>
+          <p style="color: #333; font-size: 20px">
+            Discover our passion for coffee, creativity, and community. We craft
+            every cup with love and dedication.
+          </p>
+          <h4>Quick Links</h4>
+          <div class="quick-links">
+            <a href="home.html">Home</a>
+            <a href="#menu">Menu</a>
+            <a href="reservation.html">Reservations</a>
+            <a href="Events.html">Events</a>
+            <a href="contact.html">Contact Us</a>
+          </div>
+        </div>
+        <div
+          style="
+            flex: 1;
+            min-width: 300px;
+            padding: 15px;
+            border-left: 1px solid #70d1e2;
+            border-right: 1px solid #8b4513;
+          "
+        >
+          <h3 style="color: #333; font-size: 35px">Contact Us</h3>
+          <p style="color: #333; font-size: 18px">
+            <i class="fa-solid fa-location-dot"></i> Shop 10,Mooikloof Village
+            Centre,Pretoria,0081<br />City, Country<br />
+            <i class="fa-solid fa-phone"></i>Blue Fig Coffee Café (082) 629-1804
+            <br />
+            Amanda (082) 730-1043<br />
+            Deon (061) 552-2806<br />
+            Vicky (082) 491-9244<br />
+            <i class="fa-solid fa-envelope"></i>bluefigmooikloof@gmail.com
+          </p>
+        </div>
+        <div
+          style="
+            flex: 1;
+            min-width: 300px;
+            padding: 15px;
+            border-left: 1px solid #70d1e2;
+          "
+        >
+          <h3 style="color: #333; font-size: 35px">Follow Us</h3>
+          <p style="color: #333; font-size: 20px">
+            Stay connected:
+            <a
+              href="https://www.facebook.com/people/Blue-Fig-Coffee-Caf%C3%A9/61563110291878/?_rdr"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i class="fab fa-facebook" style="font-size: 25px"></i>
+            </a>
+            |
+            <a
+              href="https://www.instagram.com/bluefigmooikloof/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i class="fab fa-instagram" style="font-size: 25px"></i>
+            </a>
+          </p>
+        </div>
+      </div>
+      <p style="text-align: center; margin-top: 20px; color: #27373c">
+        &copy; 2024 Blue Fig Coffee Café. All rights reserved.
+      </p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      href="images/demo/gallery/coffee cup.jpg"
+      rel="icon"
+      style="border-radius: 50%"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blue Fig coffee Cafe</title>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #ecf0f1;
+        font-family: Arial, sans-serif;
+        overflow: hidden; /* Prevents scrolling */
+      }
+
+      /* Outer glowing beam effect */
+      .loader {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        position: absolute;
+        box-shadow: 0 0 20px 5px #8b4513;
+        animation: pulse 2s infinite ease-in-out;
+      }
+
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 5px 2px #8b4513;
+        }
+        50% {
+          box-shadow: 0 0 25px 10px #8b4513;
+        }
+        100% {
+          box-shadow: 0 0 5px 2px #8b4513;
+        }
+      }
+
+      /* Logo with fade-in effect */
+      .logo {
+        width: 350px;
+        height: 300px;
+        border-radius: 50%;
+        opacity: 0;
+        animation: fadeIn 2s forwards;
+      }
+
+      @keyframes fadeIn {
+        100% {
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="loader"></div>
+    <!-- Glowing effect -->
+
+    <img src="images/demo/gallery/coffee cup.jpg" alt="logo" class="logo" />
+
+    <script>
+      setTimeout(() => {
+        window.location.href = "home.html"; // Redirect after 3 seconds
+      }, 3000);
+    </script>
+  </body>
+</html>

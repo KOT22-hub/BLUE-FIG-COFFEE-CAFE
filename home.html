@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Blue Fig Coffee Café</title>
+    <link rel="icon" href="images/demo/gallery/coffee cup.jpg" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link href="layout/styles/layout.css" rel="stylesheet" type="text/css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        color: #333;
+        text-align: center;
+      }
+      .header {
+        background-image: url("images/demo/gallery/Untitled\ design.png");
+        background-size: cover;
+        background-position: center;
+        height: 430px;
+        border-radius: 35px;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        text-align: center;
+        position: relative;
+        flex-direction: column;
+        padding-bottom: 50px;
+      }
+      .nav {
+        background: rgba(178, 178, 178, 0.8);
+        padding: 10px 15px;
+        display: flex;
+        justify-content: center;
+        gap: 25px;
+        border-radius: 15px;
+        position: absolute;
+        bottom: 20px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+      }
+      .nav a {
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+        padding: 10px 15px;
+        font-weight: bold;
+        transition: 0.3s;
+      }
+      .nav a:hover {
+        color: #cfecf3;
+        border-radius: 5px;
+      }
+      .hero-text {
+        padding: 40px 20px;
+      }
+      .hero-text h1 {
+        font-size: 42px;
+        color: #000;
+        margin-bottom: 20px;
+      }
+      .hero-text img {
+        display: block;
+        margin: 20px auto;
+        width: 200px;
+        height: auto;
+        border-radius: 15px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+      }
+      .hero-text p {
+        font-size: 18px;
+        max-width: 600px;
+        margin: 0 auto 20px;
+      }
+      .btn {
+        display: inline-block;
+        padding: 15px 24px;
+        font-size: 22px;
+        color: white;
+        background-color: #9dabae;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: 0.3s;
+      }
+      .btn:hover {
+        background-color: white;
+        color: #9dabae;
+        transform: scale(1.1);
+      }
+      .gallery {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+        margin-top: 30px;
+      }
+      .gallery img {
+        width: 350px;
+        height: 250px;
+        object-fit: cover;
+        border-radius: 15px;
+        transition: transform 0.3s ease;
+      }
+      .gallery img:hover {
+        transform: scale(1.05);
+      }
+      .description {
+        background: #f8f8f8;
+        padding: 50px 20px;
+        margin-top: 40px;
+        text-align: center;
+      }
+      .description h2 {
+        font-size: 36px;
+        color: rgb(122, 120, 120);
+        margin: 15px 0px 0px;
+      }
+      .description p {
+        font-size: 20px;
+        line-height: 28px;
+        letter-spacing: 0;
+        font-family: "Open Sans", sans-serif;
+      }
+      .food-icons {
+        display: flex;
+        justify-content: space-around;
+        text-align: center;
+        padding: 20px;
+        background-color: #ecf0f1;
+        margin-top: 25px;
+      }
+      .food-item {
+        width: 200px;
+      }
+      .food-item i {
+        font-size: 50px; /* Adjust icon size */
+        color: #075166;
+        background-color: #f4f4f4; /* Circle background */
+        width: 100px; /* Circle size */
+        height: 100px; /* Circle size */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.2);
+        border-radius: 50%;
+      }
+      .food-item h3 {
+        margin: 10px 0;
+        font-size: 20px;
+        font-family: "Open Sans", sans-serif;
+      }
+      .food-item p {
+        font-size: 16px;
+        color: #555;
+        font-family: "Open Sans", sans-serif;
+      }
+      .book-table-btn {
+        width: 100%;
+        padding: 12px;
+        background-color: #075166;
+        color: white;
+        font-size: 18px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: 0.3s;
+        margin-top: 20px;
+      }
+      .book-table-btn:hover {
+        background-color: #2980b9;
+        transform: scale(1.05);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      }
+      .book-table-btn:focus {
+        outline: none;
+      }
+      .twingallery div img:hover {
+        transform: scale(1.05);
+      }
+      .floating-leaf {
+        position: absolute;
+        font-size: 80px;
+        opacity: 0.8;
+        animation: floatLeaf 5s infinite alternate ease-in-out;
+      }
+      .left-leaf {
+        left: 5%;
+        top: 100%; /* Position it just below the header */
+      }
+      .right-leaf {
+        right: 5%;
+        top: 100%; /* Align on the right side */
+      }
+      @keyframes floatLeaf {
+        0% {
+          transform: translateY(0px) rotate(0deg);
+        }
+        50% {
+          transform: translateY(15px) rotate(10deg);
+        }
+        100% {
+          transform: translateY(0px) rotate(-10deg);
+        }
+      }
+
+      /* Mobile Responsive Styles */
+      @media (max-width: 768px) {
+        .hero-text h1 {
+          font-size: 32px;
+        }
+        .hero-text p {
+          font-size: 16px;
+          max-width: 90%;
+        }
+        .btn {
+          font-size: 18px;
+          padding: 12px 20px;
+        }
+        .gallery img {
+          width: 90%;
+          height: auto;
+        }
+        .nav {
+          flex-direction: column;
+          gap: 10px;
+          bottom: 10px;
+          padding: 8px 10px;
+        }
+        .nav a {
+          font-size: 16px;
+          padding: 8px 10px;
+        }
+        .description h2 {
+          font-size: 28px;
+        }
+        .description p {
+          font-size: 18px;
+          padding: 0 10px;
+        }
+        .food-icons {
+          flex-direction: column;
+          gap: 20px;
+        }
+        .food-item {
+          width: 80%;
+          margin: 0 auto;
+        }
+        .twingallery {
+          flex-direction: column;
+          align-items: center;
+        }
+        .twingallery div img {
+          width: 90%;
+          height: auto;
+          margin-top: 10px;
+        }
+        form {
+          width: 90%;
+        }
+        footer div {
+          flex-direction: column;
+          text-align: center;
+        }
+      }
+      .quick-links {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        padding: 10px;
+      }
+      .quick-links a {
+        color: #555;
+        text-decoration: none;
+        font-size: 18px;
+        position: relative;
+        padding-left: 20px;
+      }
+      .quick-links a:before {
+        content: "→";
+        position: absolute;
+        left: 0;
+        color: rgb(152, 149, 149);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <div class="floating-leaf left-leaf">🍃</div>
+      <div class="floating-leaf right-leaf">🍃</div>
+      <div class="nav">
+        <a href="home.html">Home</a>
+        <a href="#menu">Menu</a>
+        <a href="reservation.html">Reservations</a>
+        <a href="Events.html">Events</a>
+        <a href="contact.html">Contact Us</a>
+      </div>
+    </div>
+
+    <div class="hero-text">
+      <h1>Welcome to Blue Fig Coffee Café</h1>
+      <p>
+        A perfect place to unwind, connect, and enjoy expertly brewed coffee,
+        delicious pastries, and warm hospitality.
+      </p>
+      <a href="reservation.html" class="btn">Make a Reservation</a>
+    </div>
+
+    <div class="description">
+      <h2>Savor the Moment</h2>
+      <p>
+        Step into the heart of Blue Fig Coffee Café, where creatives,
+        innovators, and free spirits gather to connect and unwind. We welcome
+        the visionaries, the explorers, and the coffee lovers, offering an
+        atmosphere that fuels both conversation and inspiration. Our café is
+        more than just a place—it’s an experience. Delight in our thoughtfully
+        crafted menu, from artisanal coffee to decadent pastries, each made with
+        passion and precision. At Blue Fig, every cup tells a story, every bite
+        sparks joy. Come in, take a seat, and let the magic of flavor and
+        ambiance awaken your senses.
+      </p>
+    </div>
+    <div
+      style="display: flex; justify-content: space-evenly"
+      class="twingallery"
+    >
+      <div>
+        <img
+          src="images/demo/gallery/crossiant.jpg"
+          alt="steak and chips"
+          style="
+            height: auto;
+            width: 550px;
+            object-fit: cover;
+            border-radius: 5px;
+            transition: transform 0.3s ease;
+            margin-top: 20px;
+          "
+        />
+      </div>
+      <div>
+        <img
+          src="images/demo/gallery/pizza.jpg"
+          alt="steak and chips"
+          style="
+            height: 540px;
+            width: 550px;
+            object-fit: cover;
+            border-radius: 5px;
+            transition: transform 0.3s ease;
+            margin-top: 20px;
+          "
+        />
+      </div>
+      <div>
+        <img
+          src="/images/demo/gallery/chocolate moose.jpg"
+          alt=""
+          style="
+            height: 540px;
+            width: 550px;
+            object-fit: cover;
+            border-radius: 5px;
+            transition: transform 0.3s ease;
+            margin-top: 20px;
+          "
+        />
+      </div>
+    </div>
+    <div class="food-icons">
+      <div class="food-item">
+        <i class="fas fa-hamburger"></i>
+        <h3>Satisfy</h3>
+        <p>
+          A mouthwatering, juicy delight crafted to perfection with fresh
+          ingredients.
+        </p>
+      </div>
+      <div class="food-item">
+        <i class="fas fa-mug-hot"></i>
+        <h3>Energize</h3>
+        <p>A rich and aromatic brew to awaken your senses and fuel your day.</p>
+      </div>
+      <div class="food-item">
+        <i class="fas fa-pizza-slice"></i>
+        <h3>Indulge</h3>
+        <p>A crispy, cheesy masterpiece topped with the finest flavors.</p>
+      </div>
+      <div class="food-item">
+        <i class="fas fa-cake"></i>
+        <h3>Delight</h3>
+        <p>A sweet, heavenly treat to end your meal on a perfect note.</p>
+      </div>
+    </div>
+
+    <div class="gallery">
+      <img src="images/demo/gallery/eggs and toast.jpg" alt="Eggs and Toast" />
+      <img src="images/demo/gallery/steak chip.jpeg" alt="Croissant" />
+      <img src="images/demo/gallery/truffle.jpg" alt="Pizza" />
+      <img src="images/demo/gallery/burger.jpg" alt="Burger" />
+      <img
+        src="images/demo/gallery/chocolate crossiant.jpg"
+        alt="Chocolate Croissant"
+      />
+    </div>
+    <div
+      style="
+        height: 800px;
+        background-color: #e8f1f3;
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      "
+    >
+      <form
+        style="width: 60%"
+        id="book-form"
+        action="/send_email"
+        method="post"
+      >
+        <h2 style="text-align: center; color: #075166; font-size: 35px">
+          Book a Table
+        </h2>
+        <p style="font-family: Open Sans, sans-serif">
+          Secure your meal experience with ease. Whether it’s an intimate meal,
+          a celebration, or a casual get-together, we’ve got the perfect table
+          for you.
+        </p>
+
+        <div style="display: flex; gap: 20px">
+          <div style="flex: 1">
+            <label style="font-weight: bold">Name</label>
+            <input
+              type="text"
+              required
+              style="
+                width: 100%;
+                padding: 10px;
+                border: none;
+                border-radius: 5px;
+              "
+              id="Name"
+            />
+
+            <label style="font-weight: bold">Phone</label>
+            <input
+              type="tel"
+              required
+              style="
+                width: 100%;
+                padding: 10px;
+                border: none;
+                border-radius: 5px;
+              "
+              id="Phone"
+            />
+
+            <label style="font-weight: bold">Email</label>
+            <input
+              type="email"
+              required
+              style="
+                width: 100%;
+                padding: 10px;
+                border: none;
+                border-radius: 5px;
+              "
+              id="Email"
+            />
+          </div>
+
+          <div style="flex: 1">
+            <label style="font-weight: bold">Date</label>
+            <input
+              type="date"
+              required
+              style="
+                width: 100%;
+                padding: 10px;
+                border: none;
+                border-radius: 5px;
+              "
+              id="Date"
+            />
+
+            <label style="font-weight: bold">Time</label>
+            <input
+              type="time"
+              required
+              style="
+                width: 100%;
+                padding: 10px;
+                border: none;
+                border-radius: 5px;
+              "
+              id="Time"
+            />
+
+            <label style="font-weight: bold">Seats</label>
+            <input
+              type="number"
+              min="1"
+              required
+              style="
+                width: 100%;
+                padding: 10px;
+                border: none;
+                border-radius: 5px;
+              "
+              id="Seats"
+            />
+          </div>
+        </div>
+
+        <label style="font-weight: bold; display: block; margin-top: 15px"
+          >Special Requests</label
+        >
+        <textarea
+          rows="3"
+          style="
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            resize: none;
+          "
+          id="Requests"
+        ></textarea>
+
+        <button class="book-table-btn" type="submit">Book a Table</button>
+      </form>
+      <script>
+        document
+          .getElementById("book-form")
+          .addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const response = await fetch("http://localhost:5000/home.html", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                name: document.getElementById("Name").value,
+                phone: document.getElementById("Phone").value,
+                Email: document.getElementById("Email").value,
+                Date: document.getElementById("Date").value,
+                Time: document.getElementById("Time").value,
+                Seats: document.getElementById("Seats").value,
+                Requests: document.getElementById("Requests").value,
+              }),
+            });
+
+            const result = await response.json();
+            alert(result.message);
+          });
+      </script>
+    </div>
+    <footer style="padding: 30px 0">
+      <div
+        style="
+          max-width: 1200px;
+          margin: auto;
+          padding: 0 15px;
+          display: flex;
+          flex-wrap: wrap;
+        "
+      >
+        <div
+          style="
+            flex: 1;
+            min-width: 300px;
+            padding: 15px;
+            border-right: 1px solid #8b4513;
+          "
+        >
+          <h3 style="color: #333; font-size: 35px">Blue Fig Coffee Café</h3>
+          <p style="color: #333; font-size: 20px">
+            Discover our passion for coffee, creativity, and community. We craft
+            every cup with love and dedication.
+          </p>
+          <h4>Quick Links</h4>
+          <div class="quick-links">
+            <a href="home.html">Home</a>
+            <a href="#menu">Menu</a>
+            <a href="reservation.html">Reservations</a>
+            <a href="Events.html">Events</a>
+            <a href="contact.html">Contact Us</a>
+          </div>
+        </div>
+        <div
+          style="
+            flex: 1;
+            min-width: 300px;
+            padding: 15px;
+            border-left: 1px solid #70d1e2;
+            border-right: 1px solid #8b4513;
+          "
+        >
+          <h3 style="color: #333; font-size: 35px">Contact Us</h3>
+          <p style="color: #333; font-size: 18px">
+            <i class="fa-solid fa-location-dot"></i> Shop 10,Mooikloof Village
+            Centre,Pretoria,0081<br />City, Country<br />
+            <i class="fa-solid fa-phone"></i>Blue Fig Coffee Café (082) 629-1804
+            <br />
+            Amanda (082) 730-1043<br />
+            Deon (061) 552-2806<br />
+            Vicky (082) 491-9244<br />
+            <i class="fa-solid fa-envelope"></i>bluefigmooikloof@gmail.com
+          </p>
+        </div>
+        <div
+          style="
+            flex: 1;
+            min-width: 300px;
+            padding: 15px;
+            border-left: 1px solid #70d1e2;
+          "
+        >
+          <h3 style="color: #333; font-size: 35px">Follow Us</h3>
+          <p style="color: #333; font-size: 20px">
+            Stay connected:
+            <a
+              href="https://www.facebook.com/people/Blue-Fig-Coffee-Caf%C3%A9/61563110291878/?_rdr"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i class="fab fa-facebook" style="font-size: 25px"></i>
+            </a>
+            |
+            <a
+              href="https://www.instagram.com/bluefigmooikloof/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i class="fab fa-instagram" style="font-size: 25px"></i>
+            </a>
+          </p>
+        </div>
+      </div>
+      <p style="text-align: center; margin-top: 20px; color: #27373c">
+        &copy; 2024 Blue Fig Coffee Café. All rights reserved.
+      </p>
+    </footer>
+  </body>
+</html>
