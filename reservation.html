@@ -32,7 +32,8 @@
       }
       .header {
         background-image: url("images/demo/gallery/Untitled\ design.png");
-        background-size: cover;
+        background-size: 100% auto;
+        background-repeat: no-repeat;
         background-position: center;
         height: 430px;
         border-radius: 35px;
@@ -42,7 +43,8 @@
         text-align: center;
         position: relative;
         flex-direction: column;
-        padding-bottom: 50px;
+        /* Reduced padding-bottom to bring nav closer */
+        padding-bottom: 20px;
       }
       .nav {
         background: rgba(178, 178, 178, 0.8);
@@ -269,15 +271,27 @@
 
       /* Mobile Responsive Styles */
       @media (max-width: 768px) {
+        .header {
+          background-size: contain; /* Ensures full image is visible */
+          background-position: top center; /* Adjust position */
+          height: 176px;
+          padding-bottom: 10px; /* Add some space */
+          background-size: 100% auto; /* Ensures full width without cutting */
+        }
         .nav {
-          flex-direction: column;
-          gap: 10px;
-          bottom: 10px;
-          padding: 8px 10px;
+          display: flex;
+          flex-direction: row; /* Keep items in a row */
+          justify-content: flex-start; /* Align left or center */
+          overflow-x: auto; /* Allow horizontal scrolling if needed */
+          padding: 5px;
+          white-space: nowrap; /* Prevent wrapping */
+          width: 380px;
         }
         .nav a {
           font-size: 16px;
-          padding: 8px 10px;
+          padding: 5px 5px;
+          white-space: nowrap; /* Ensure text doesn't wrap */
+          width: 380px;
         }
         .hero-text h1 {
           font-size: 32px;
@@ -319,8 +333,6 @@
   </head>
   <body>
     <div class="header">
-      <div class="floating-leaf left-leaf">🍃</div>
-      <div class="floating-leaf right-leaf">🍃</div>
       <div class="nav">
         <a href="home.html">Home</a>
         <a href="#menu">Menu</a>
@@ -331,7 +343,6 @@
     </div>
 
     <div class="hero-text">
-      <h1>Welcome to Blue Fig Coffee Café</h1>
       <p>
         A perfect place to unwind, connect, and enjoy expertly brewed coffee,
         delicious pastries, and warm hospitality.
@@ -375,7 +386,7 @@
           <p>
             Whether you're gathering for an afternoon of laughter, sparking
             ideas over coffee, or setting the stage for an unforgettable date,
-            our restaurant provide the perfect ambiance. Fill out the form
+            our restaurant provides the perfect ambiance. Fill out the form
             below, and we'll confirm your reservation shortly.
           </p>
         </div>
@@ -407,30 +418,43 @@
             "
             id="Phone"
           />
-          <input
-            type="date"
-            style="
-              flex: 1 1 calc(50% - 20px);
-              padding: 15px;
-              border: none;
-              border-radius: 8px;
-              color: #333;
-              box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-            "
-            id="Date"
-          />
-          <input
-            type="time"
-            style="
-              flex: 1 1 calc(50% - 20px);
-              padding: 15px;
-              border: none;
-              border-radius: 8px;
-              color: #333;
-              box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-            "
-            id="Time"
-          />
+
+          <div style="flex: 1 1 calc(50% - 20px); text-align: left">
+            <label for="Date" style="color: #2c3e50; font-weight: bold"
+              >Date</label
+            >
+            <input
+              type="date"
+              style="
+                width: 100%;
+                padding: 15px;
+                border: none;
+                border-radius: 8px;
+                color: #333;
+                box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+              "
+              id="Date"
+            />
+          </div>
+
+          <div style="flex: 1 1 calc(50% - 20px); text-align: left">
+            <label for="Time" style="color: #2c3e50; font-weight: bold"
+              >Time</label
+            >
+            <input
+              type="time"
+              style="
+                width: 100%;
+                padding: 15px;
+                border: none;
+                border-radius: 8px;
+                color: #333;
+                box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+              "
+              id="Time"
+            />
+          </div>
+
           <input
             type="number"
             placeholder="Seats"
@@ -471,6 +495,7 @@
             id="Requests"
           ></textarea>
         </div>
+
         <button
           style="
             width: 100%;
@@ -490,28 +515,26 @@
           Book a Table
         </button>
       </form>
+
       <script>
         document
           .getElementById("reservation-form")
           .addEventListener("submit", async (e) => {
             e.preventDefault();
 
-            const response = await fetch(
-              "http://localhost:5000/reservation.html",
-              {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                  name: document.getElementById("Name").value,
-                  phone: document.getElementById("Phone").value,
-                  Email: document.getElementById("Email").value,
-                  Date: document.getElementById("Date").value,
-                  Time: document.getElementById("Time").value,
-                  Seats: document.getElementById("Seats").value,
-                  Requests: document.getElementById("Requests").value,
-                }),
-              }
-            );
+            const response = await fetch("/.netlify/functions/reservation", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                name: document.getElementById("Name").value,
+                phone: document.getElementById("Phone").value,
+                Email: document.getElementById("Email").value,
+                Date: document.getElementById("Date").value,
+                Time: document.getElementById("Time").value,
+                Seats: document.getElementById("Seats").value,
+                Requests: document.getElementById("Requests").value,
+              }),
+            });
 
             const result = await response.json();
             alert(result.message);
@@ -573,11 +596,6 @@
             border-right: 1px solid #8b4513;
           "
         >
-          <h3 style="color: #333; font-size: 35px">Blue Fig Coffee Café</h3>
-          <p style="color: #333; font-size: 20px">
-            Discover our passion for coffee, creativity, and community. We craft
-            every cup with love and dedication.
-          </p>
           <h4>Quick Links</h4>
           <div class="quick-links">
             <a href="home.html">Home</a>
@@ -600,11 +618,15 @@
           <p style="color: #333; font-size: 18px">
             <i class="fa-solid fa-location-dot"></i> Shop 10,Mooikloof Village
             Centre,Pretoria,0081<br />City, Country<br />
+          </p>
+
+          <p style="color: #333; font-size: 18px">
             <i class="fa-solid fa-phone"></i>Blue Fig Coffee Café (082) 629-1804
-            <br />
             Amanda (082) 730-1043<br />
             Deon (061) 552-2806<br />
             Vicky (082) 491-9244<br />
+          </p>
+          <p style="color: #333; font-size: 18px">
             <i class="fa-solid fa-envelope"></i>bluefigmooikloof@gmail.com
           </p>
         </div>
