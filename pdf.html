@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>PDF Menu Links</title>
+  <style>
+    body {
+      margin: 0;
+      display: flex;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+      background-color: black;
+    }
+
+   
+
+    .content {
+      margin-left: 200px;
+      width: calc(100% - 200px);
+      height: 100vh;
+      overflow-y: scroll;
+      scroll-snap-type: y mandatory;
+    }
+
+    .image-container {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      scroll-snap-align: start;
+      background-color: black;
+    }
+
+    .image-container img {
+      max-height: 100%;
+      max-width: 100%;
+      object-fit: contain;
+    }
+  </style>
+</head>
+<body>
+
+ 
+
+  <div class="content">
+    <div class="image-container"><img src="/menuPhotos/IMG_0604.jpg" alt="Image 1"></div>
+    <div class="image-container"><img src="/menuPhotos/IMG_0605.jpg" alt="Image 2"></div>
+    <div class="image-container"><img src="/menuPhotos/IMG_0606.jpg" alt="Image 3"></div>
+  </div>
+
+</body>
+</html>
